@@ -7,23 +7,19 @@ import (
 )
 
 func TestWellcome(t *testing.T) {
-	req, err := http.NewRequest("GET", "/", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	req := httptest.NewRequest("GET", "/", nil)
+	recorder := httptest.NewRecorder()
 
-	responseRec := httptest.NewRecorder()
-
-	HandleWellcome(responseRec, req)
+	HandleWellcome(recorder, req)
 
 	// Check the response status code
-	if status := responseRec.Code; status != http.StatusOK {
+	if status := recorder.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
 	}
 
 	// Check the response body
 	expected := "Hello, World!"
-	actualResponseString := responseRec.Body.String()
+	actualResponseString := recorder.Body.String()
 	if actualResponseString != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v", actualResponseString, expected)
 	}

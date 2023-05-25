@@ -6,4 +6,4 @@ run: build
 	./bin/app
 
 test:
-	go test ./...
+	go test ./... -v
