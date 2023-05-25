@@ -1,7 +1,7 @@
 
 # Dewantara
 
-What if we trying to make a rest api with golang without any framework ? don't mean to be so edgy, just wanna learn how it work in a native way.
+What if we try to make a rest api with golang without any framework ? don't mean to be so edgy, just wanna learn how it work in a native way.
 
 
 
