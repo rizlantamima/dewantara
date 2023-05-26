@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -12,13 +13,17 @@ import (
 func main()  {
 	listenAddressPort := flag.Int("port",3000,"port to serve HTTP on")
 	flag.Parse()
-	
-	http.HandleFunc("/", handler.HandleWellcome)
-	http.HandleFunc("/users", handler.HandleUsers)	
+
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", handler.HandleWellcome)
+	mux.HandleFunc("/users", handler.HandleUsers)
+	mux.HandleFunc("/users/", handler.HandleUserDetail)	
 
 
 	listenAddressPortString := ":" + strconv.Itoa(*listenAddressPort)
 
 	fmt.Printf("Your services are runing on port : %v",*listenAddressPort)
-	http.ListenAndServe(listenAddressPortString,nil)
+	log.Fatal(http.ListenAndServe(listenAddressPortString, mux))
+
 }

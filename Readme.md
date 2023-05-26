@@ -1,8 +1,7 @@
 
 # Dewantara
 
-What if we try to make a rest api with golang without any framework ? don't mean to be so edgy, just wanna learn how it work in a native way.
-
+Modular Rest boilerplate
 
 
 ## Run Locally
